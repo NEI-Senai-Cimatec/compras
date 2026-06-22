@@ -4198,33 +4198,49 @@ function renderizarMapaCalor() {
         });
 
 
-        // ============================================================
-        // SCRIPTS DA PRIORIZAÇÃO
-        // ============================================================
-        let currentPagePriorizacao = 1;
-        const pageSizePriorizacao = 10;
-        let priorizacaoChart = null;
-        let dadosPriorizacaoFiltrados = [];
+
+
+
+
+
+
+
+
+// ============================================================
+// SCRIPTS DA PRIORIZAÇÃO (CORRIGIDO)
+// ============================================================
+let currentPagePriorizacao = 1;
+const pageSizePriorizacao = 10;
+let priorizacaoChart = null;
+
+// Variáveis globais para os filtros
+let filtroOutliers = false;
+let filtroQuadrante = 'Todos';
+
+// Estado da ordenação
 let ordemColunaPriorizacao = null;
 let ordemDirecaoPriorizacao = 'asc';
 
-        // ============================================================
-        // GRÁFICO DA MATRIZ DE PRIORIZAÇÃO (COM FILTROS)
-        // ============================================================
+// Dados filtrados (serão atualizados pela matriz)
+let dadosPriorizacaoFiltrados = [];
 
-        // Variáveis globais para os filtros
-        let filtroOutliers = false;  // Começa desativado
-        let filtroQuadrante = 'Todos';
+// ============================================================
+// DADOS ATUALIZADOS (com base na tabela Síntese2 e Score_Priorizacao)
+// ============================================================
+// (Os dados já estão definidos no escopo global, mas vamos garantir que estão corretos)
+// Se necessário, você pode redefinir dadosPriorizacao aqui com os valores mais recentes.
+// Use os dados que você já tem, mas vou verificar a consistência.
 
+// ============================================================
+// GRÁFICO DA MATRIZ DE PRIORIZAÇÃO
+// ============================================================
 function renderizarMatrizPriorizacao() {
     const ctx = document.getElementById('graficoPriorizacao').getContext('2d');
     if (priorizacaoChart) {
         priorizacaoChart.destroy();
     }
 
-    // ============================================================
-    // 1. DADOS ORIGINAIS
-    // ============================================================
+    // 1. DADOS ORIGINAIS (filtra valores válidos)
     const dadosOriginais = dadosPriorizacao.filter(d =>
         d.volume > 0 &&
         d.crescimento !== undefined &&
@@ -4232,11 +4248,8 @@ function renderizarMatrizPriorizacao() {
         !isNaN(d.crescimento)
     );
 
-    // ============================================================
-    // 2. APLICAR FILTRO DE OUTLIERS (SE ATIVO)
-    // ============================================================
+    // 2. APLICAR FILTRO DE OUTLIERS
     let dadosFiltrados = [...dadosOriginais];
-
     if (filtroOutliers) {
         const volumes = dadosFiltrados.map(d => d.volume).sort((a, b) => a - b);
         const crescimentos = dadosFiltrados.map(d => d.crescimento).sort((a, b) => a - b);
@@ -4262,18 +4275,14 @@ function renderizarMatrizPriorizacao() {
         );
     }
 
-    // ============================================================
     // 3. CALCULAR MEDIANAS
-    // ============================================================
     const volumes = dadosFiltrados.map(d => d.volume).sort((a, b) => a - b);
     const crescimentos = dadosFiltrados.map(d => d.crescimento).sort((a, b) => a - b);
 
     const medianaVolume = volumes[Math.floor(volumes.length / 2)] || 1000000;
     const medianaCrescimento = crescimentos[Math.floor(crescimentos.length / 2)] || 0;
 
-    // ============================================================
-    // 4. CLASSIFICAR TODOS OS SETORES
-    // ============================================================
+    // 4. CLASSIFICAR SETORES
     function getQuadrante(volume, crescimento) {
         const volumeAlto = volume >= medianaVolume;
         const crescimentoAlto = crescimento >= medianaCrescimento;
@@ -4289,41 +4298,31 @@ function renderizarMatrizPriorizacao() {
         quadrante: getQuadrante(d.volume, d.crescimento)
     }));
 
-    // ============================================================
     // 5. APLICAR FILTRO POR QUADRANTE
-    // ============================================================
     let dadosExibir = dadosClassificados;
     if (filtroQuadrante !== 'Todos') {
         dadosExibir = dadosClassificados.filter(d => d.quadrante === filtroQuadrante);
     }
 
-    // ============================================================
     // ARMAZENAR DADOS FILTRADOS PARA A TABELA
-    // ============================================================
     dadosPriorizacaoFiltrados = dadosExibir;
 
-    // ============================================================
-    // ATUALIZAR TABELA COM OS DADOS FILTRADOS
-    // ============================================================
+    // ATUALIZAR TABELA COM OS DADOS FILTRADOS (e com a ordenação atual)
     renderizarTabelaPriorizacao();
 
-    // ============================================================
     // 6. CORES DOS QUADRANTES
-    // ============================================================
     const cores = {
         'Estratégico': '#0a4ea3',
         'Alavancagem': '#10b981',
         'Gargalo': '#ef4444',
         'Não Crítico': '#f59e0b'
     };
-
     const coresFundo = {
         'Estratégico': 'rgba(10, 78, 163, 0.10)',
         'Alavancagem': 'rgba(16, 185, 129, 0.10)',
         'Gargalo': 'rgba(239, 68, 68, 0.10)',
         'Não Crítico': 'rgba(245, 158, 11, 0.10)'
     };
-
     const descricaoQuadrantes = {
         'Estratégico': 'Alto volume e alto crescimento. Prioridade máxima para ação e investimento.',
         'Alavancagem': 'Baixo volume e alto crescimento. Oportunidade de desenvolvimento e expansão.',
@@ -4380,9 +4379,7 @@ function renderizarMatrizPriorizacao() {
         };
     }).filter(ds => ds.data.length > 0);
 
-    // ============================================================
     // PLUGIN PARA OS QUADRANTES
-    // ============================================================
     const pluginQuadrantes = {
         id: 'quadrantes',
         beforeDraw: function (chart) {
@@ -4539,9 +4536,7 @@ function renderizarMatrizPriorizacao() {
         }
     };
 
-    // ============================================================
     // CRIAR O GRÁFICO
-    // ============================================================
     priorizacaoChart = new Chart(ctx, {
         type: 'scatter',
         data: { datasets: datasets },
@@ -4643,33 +4638,166 @@ function renderizarMatrizPriorizacao() {
         plugins: [pluginQuadrantes]
     });
 }
-        // ============================================================
-        // 12. FUNÇÕES PARA OS FILTROS
-        // ============================================================
 
-        function toggleOutliers() {
-            filtroOutliers = !filtroOutliers;
-            const btn = document.getElementById('btnOutliers');
-            if (btn) {
-                btn.textContent = filtroOutliers ? '🔴 Remover Outliers (Ativo)' : '🟢 Remover Outliers (Inativo)';
-                btn.style.background = filtroOutliers ? '#ef4444' : '#10b981';
-                btn.style.color = '#ffffff';
-            }
-            renderizarMatrizPriorizacao();
+// ============================================================
+// RENDERIZAR TABELA (COM ORDENAÇÃO E FILTROS)
+// ============================================================
+function renderizarTabelaPriorizacao() {
+    // Usar dados filtrados
+    let dados = dadosPriorizacaoFiltrados;
+
+    // Aplicar ordenação, se houver
+    if (ordemColunaPriorizacao) {
+        const coluna = ordemColunaPriorizacao;
+        const dir = ordemDirecaoPriorizacao;
+        dados = [...dados].sort((a, b) => {
+            let valA = a[coluna];
+            let valB = b[coluna];
+            if (typeof valA === 'string') valA = valA.toLowerCase();
+            if (typeof valB === 'string') valB = valB.toLowerCase();
+            if (valA < valB) return dir === 'asc' ? -1 : 1;
+            if (valA > valB) return dir === 'asc' ? 1 : -1;
+            return 0;
+        });
+    }
+
+    const totalRows = dados.length;
+    const start = (currentPagePriorizacao - 1) * pageSizePriorizacao;
+    const end = Math.min(start + pageSizePriorizacao, totalRows);
+    const pageData = dados.slice(start, end);
+
+    document.getElementById('pageInfoPriorizacao').textContent = `${start + 1}-${end} de ${totalRows}`;
+    document.getElementById('prevPagePriorizacao').disabled = currentPagePriorizacao === 1;
+    document.getElementById('nextPagePriorizacao').disabled = end >= totalRows;
+
+    const tbody = document.getElementById('tbodyPriorizacao');
+    tbody.innerHTML = '';
+
+    const coresQuadrante = {
+        'Estratégico': '#0a4ea3',
+        'Alavancagem': '#10b981',
+        'Gargalo': '#f97316',
+        'Não Crítico': '#ef4444'
+    };
+
+    pageData.forEach(d => {
+        const tr = document.createElement('tr');
+        const cor = coresQuadrante[d.quadrante] || '#64748b';
+        tr.innerHTML = `
+            <td><strong>${d.cnae}</strong></td>
+            <td>${d.setor}</td>
+            <td>${d.score.toFixed(1)}</td>
+            <td>R$ ${d.volume >= 1e9 ? (d.volume / 1e9).toFixed(2).replace('.', ',') + ' bi' : (d.volume / 1e6).toFixed(1).replace('.', ',') + ' mi'}</td>
+            <td class="${d.crescimento >= 0 ? 'growth-up' : 'growth-down'}">${d.crescimento >= 0 ? '+' : ''}${d.crescimento.toFixed(1)}%</td>
+            <td><span style="display:inline-block; width:12px; height:12px; border-radius:3px; background:${cor}; margin-right:6px;"></span> ${d.quadrante}</td>
+        `;
+        tr.addEventListener('click', function () {
+            const modal = document.getElementById('modalDetalhesPerfil');
+            document.getElementById('modalTitlePerfil').textContent = d.setor;
+            document.getElementById('modalSubtitlePerfil').textContent = `CNAE: ${d.cnae}`;
+            document.getElementById('modalBodyPerfil').innerHTML = `
+                <div style="margin:15px 0;">
+                    <div class="modal-item"><span class="nome">Score</span><span class="valor">${d.score.toFixed(1)}</span></div>
+                    <div class="modal-item"><span class="nome">Volume de compras 2025</span><span class="valor">R$ ${d.volume.toLocaleString('pt-BR')}</span></div>
+                    <div class="modal-item"><span class="nome">Crescimento 2023-2025</span><span class="valor" style="color:${d.crescimento >= 0 ? '#0e6372' : '#ef4b4c'}">${d.crescimento >= 0 ? '+' : ''}${d.crescimento.toFixed(1)}%</span></div>
+                    <div class="modal-item"><span class="nome">Quadrante</span><span class="valor" style="color:${coresQuadrante[d.quadrante]}">${d.quadrante}</span></div>
+                </div>
+            `;
+            modal.classList.add('active');
+        });
+        tbody.appendChild(tr);
+    });
+}
+
+// ============================================================
+// FUNÇÕES DOS FILTROS
+// ============================================================
+function toggleOutliers() {
+    filtroOutliers = !filtroOutliers;
+    const btn = document.getElementById('btnOutliers');
+    if (btn) {
+        btn.textContent = filtroOutliers ? '🔴 Remover Outliers (Ativo)' : '🟢 Remover Outliers (Inativo)';
+        btn.style.background = filtroOutliers ? '#ef4444' : '#10b981';
+        btn.style.color = '#ffffff';
+    }
+    renderizarMatrizPriorizacao(); // atualiza gráfico e tabela
+}
+
+function filtrarQuadrante(quadrante) {
+    filtroQuadrante = quadrante;
+    document.querySelectorAll('.btn-quadrante').forEach(btn => {
+        const isActive = btn.dataset.quadrante === quadrante || (quadrante === 'Todos' && btn.dataset.quadrante === 'Todos');
+        btn.style.background = isActive ? '#0a4ea3' : '#e2e8f0';
+        btn.style.color = isActive ? '#ffffff' : '#64748b';
+        btn.style.borderColor = isActive ? '#0a4ea3' : '#e2e8f0';
+    });
+    renderizarMatrizPriorizacao(); // atualiza gráfico e tabela
+}
+
+// ============================================================
+// ORDENAÇÃO DA TABELA (EVENTOS)
+// ============================================================
+document.querySelectorAll('#tabelaPriorizacao thead th[data-col]').forEach(th => {
+    th.addEventListener('click', function() {
+        const col = this.dataset.col;
+        // Alterna direção se a mesma coluna for clicada
+        if (ordemColunaPriorizacao === col) {
+            ordemDirecaoPriorizacao = ordemDirecaoPriorizacao === 'asc' ? 'desc' : 'asc';
+        } else {
+            ordemColunaPriorizacao = col;
+            ordemDirecaoPriorizacao = 'asc';
         }
-
-        function filtrarQuadrante(quadrante) {
-            filtroQuadrante = quadrante;
-            // Atualizar botões
-            document.querySelectorAll('.btn-quadrante').forEach(btn => {
-                const isActive = btn.dataset.quadrante === quadrante || (quadrante === 'Todos' && btn.dataset.quadrante === 'Todos');
-                btn.style.background = isActive ? '#0a4ea3' : '#e2e8f0';
-                btn.style.color = isActive ? '#ffffff' : '#64748b';
-                btn.style.borderColor = isActive ? '#0a4ea3' : '#e2e8f0';
-            });
-            renderizarMatrizPriorizacao();
+        // Atualiza indicadores visuais
+        document.querySelectorAll('#tabelaPriorizacao thead th .sort-indicator').forEach(el => {
+            el.textContent = '⇅';
+        });
+        const indicator = this.querySelector('.sort-indicator');
+        if (indicator) {
+            indicator.textContent = ordemDirecaoPriorizacao === 'asc' ? '▲' : '▼';
         }
+        // Volta para a primeira página e renderiza a tabela
+        currentPagePriorizacao = 1;
+        renderizarTabelaPriorizacao(); // apenas a tabela, não o gráfico
+    });
+});
 
+// ============================================================
+// PAGINAÇÃO DA TABELA
+// ============================================================
+document.getElementById('prevPagePriorizacao').addEventListener('click', function () {
+    if (currentPagePriorizacao > 1) {
+        currentPagePriorizacao--;
+        renderizarTabelaPriorizacao();
+    }
+});
+document.getElementById('nextPagePriorizacao').addEventListener('click', function () {
+    const total = dadosPriorizacaoFiltrados.length;
+    if (currentPagePriorizacao * pageSizePriorizacao < total) {
+        currentPagePriorizacao++;
+        renderizarTabelaPriorizacao();
+    }
+});
+
+// ============================================================
+// MODAL - FECHAR
+// ============================================================
+document.getElementById('modalClosePerfil').addEventListener('click', function () {
+    document.getElementById('modalDetalhesPerfil').classList.remove('active');
+});
+document.getElementById('modalDetalhesPerfil').addEventListener('click', function (e) {
+    if (e.target === this) {
+        this.classList.remove('active');
+    }
+});
+
+// ============================================================
+// INICIALIZAÇÃO DA PRIORIZAÇÃO
+// ============================================================
+document.addEventListener('DOMContentLoaded', function () {
+    // Inicializa dados filtrados com todos os dados (sem filtros)
+    dadosPriorizacaoFiltrados = dadosPriorizacao.filter(d => d.volume > 0 && d.crescimento !== undefined);
+    renderizarMatrizPriorizacao(); // também chama renderizarTabelaPriorizacao internamente
+});
 
 
 
