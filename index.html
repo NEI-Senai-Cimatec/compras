@@ -3721,7 +3721,7 @@
         function abrirModalPerfil(setor) {
             const modal = document.getElementById('modalDetalhesPerfil');
             document.getElementById('modalTitlePerfil').textContent = setor.descricao;
-            document.getElementById('modalSubtitlePerfil').textContent = `CNAE: ${setor.cnae} | 2025: R$ ${formatarMoeda(setor.v2025)} | Dependência Externa: ${setor.dep_2025.toFixed(1)}%`;
+            document.getElementById('modalSubtitlePerfil').textContent = `CNAE: ${setor.cnae} | 2025: R$ ${formatarMoeda(setor.v2025)} | Compra de fornecedores externos: ${setor.dep_2025.toFixed(1)}%`;
             let html = `
                 <div style="margin:15px 0 10px 0;">
                     <div class="modal-item"><span class="nome">Variação 2023→2025</span><span class="valor" style="color:${setor.var_pct >= 0 ? '#0e6372' : '#ef4b4c'}">${setor.var_pct >= 0 ? '+' : ''}${setor.var_pct.toFixed(1)}%</span></div>
@@ -3869,7 +3869,7 @@
             return [
                 `${s.descricao}`,
                 `Valor: R$ ${formatarMoeda(s.v2025)}`,
-                `Dependência externa: ${s.dep_2025.toFixed(1)}%`
+                `Compra de fornecedores externos: ${s.dep_2025.toFixed(1)}%`
             ];
         }
     }
