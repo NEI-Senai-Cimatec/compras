@@ -1582,7 +1582,8 @@
             </div>
             <div class="fonte">Fonte: FIEB e SENAI CIMATEC baseado nos dados SIMPAS (SAEB) </div>
             <div style="margin-top: 12px; text-align: left;">
-                <div class="fonte">Conheça mais: </div>
+                <div class="section-title" style="margin-bottom: 16px;">Conheça mais: </div>
+                <!--div class="fonte">Conheça mais: </div-->
                 <a href="https://raw.githubusercontent.com/NEI-Senai-Cimatec/compras/main/docs/Metodologia%20Prioriza%C3%A7%C3%A3o%20de%20Compras%20P%C3%BAblicas.pdf"
                     target="_blank" rel="noopener noreferrer"
                     style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 6px;">
@@ -4559,7 +4560,7 @@
                                 label: function (context) {
                                     const raw = context.raw;
                                     return [
-                                        `CNAE: ${raw.cnae}`,
+                                        `CNAE: ${raw.cnae} - ${raw.setor}`,
                                         `Total de compras: R$ ${formatarMoeda(raw.volume)}`,
                                         `Crescimento (2023-2025): ${raw.crescimento >= 0 ? '+' : ''}${raw.crescimento.toFixed(1)}%`,
                                         `Score: ${raw.score.toFixed(1)}`,
