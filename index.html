@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -488,6 +488,30 @@
 
         #tabela-crescimento-csv th:hover {
             background: var(--bg-light);
+        }
+
+        #tabela-rais-estabelecimentos {
+            min-width: max-content;
+        }
+
+        #tabela-rais-estabelecimentos th {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        #tabela-rais-estabelecimentos th:hover {
+            background: var(--bg-light);
+        }
+
+        #tabela-rais-estabelecimentos tfoot tr {
+            background-color: var(--bg-light);
+            font-weight: bold;
+        }
+
+        #tabela-rais-estabelecimentos tfoot td {
+            border-top: 2px solid var(--border-color);
+            border-bottom: none;
+            color: var(--text-dark);
         }
 
         .sort-indicator {
@@ -1238,6 +1262,44 @@
                             <button class="pagination-btn" id="csv-next-btn" onclick="changeCsvPage(1)"
                                 disabled>Próximo</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção Nova: Tabela de Estabelecimentos e Vínculos Formais (CNAE Grupo) -->
+            <div class="card" style="margin-bottom: 32px;" id="secao-rais-estabelecimentos">
+                <div class="card-title">Estabelecimentos e Vínculos Formais por Grupo CNAE - Bahia (2023-2025)</div>
+                <div class="table-scroll-wrapper">
+                    <div class="table-container">
+                        <table id="tabela-rais-estabelecimentos">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" style="cursor: pointer;" onclick="ordenarTabelaRais(0)">Cod. <span id="sort-rais-0" class="sort-indicator inactive">⇅</span></th>
+                                    <th rowspan="2" style="cursor: pointer;" onclick="ordenarTabelaRais(1)">CNAE 2.0 Grupo - BAHIA <span id="sort-rais-1" class="sort-indicator inactive">⇅</span></th>
+                                    <th colspan="3" style="text-align: center; border-bottom: 1px solid var(--border-color);">Estabelecimentos</th>
+                                    <th colspan="3" style="text-align: center; border-bottom: 1px solid var(--border-color);">Vínculos Formais</th>
+                                </tr>
+                                <tr>
+                                    <th style="cursor: pointer;" onclick="ordenarTabelaRais(2)">2023 <span id="sort-rais-2" class="sort-indicator inactive">⇅</span></th>
+                                    <th style="cursor: pointer;" onclick="ordenarTabelaRais(3)">2025 <span id="sort-rais-3" class="sort-indicator inactive">⇅</span></th>
+                                    <th style="cursor: pointer;" onclick="ordenarTabelaRais(4)">Taxa de Crescimento (2023-2025) <span id="sort-rais-4" class="sort-indicator inactive">⇅</span></th>
+                                    <th style="cursor: pointer;" onclick="ordenarTabelaRais(5)">2023 <span id="sort-rais-5" class="sort-indicator inactive">⇅</span></th>
+                                    <th style="cursor: pointer;" onclick="ordenarTabelaRais(6)">2025 <span id="sort-rais-6" class="sort-indicator inactive">⇅</span></th>
+                                    <th style="cursor: pointer;" onclick="ordenarTabelaRais(7)">Taxa de Crescimento (2023-2025) <span id="sort-rais-7" class="sort-indicator inactive">⇅</span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-rais-estabelecimentos">
+                                <!-- Preenchido dinamicamente via JS -->
+                            </tbody>
+                            <tfoot id="tfoot-rais-estabelecimentos">
+                                <!-- Linha com o Total fixa aqui -->
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <span id="rais-page-info">0 resultados</span>
+                        <button class="pagination-btn" id="rais-prev-btn" onclick="changeRaisPage(-1)" disabled>Anterior</button>
+                        <button class="pagination-btn" id="rais-next-btn" onclick="changeRaisPage(1)" disabled>Próximo</button>
                     </div>
                 </div>
             </div>
@@ -3706,6 +3768,231 @@
         }
 
         // ============================================================
+        // FUNÇÕES DA TABELA RAIS ESTABELECIMENTOS E VÍNCULOS FORMAIS
+        // ============================================================
+        let raisDataRaw = [];
+        let raisDataTotal = null;
+        let raisPage = 1;
+        const raisPageSize = 10;
+        let colunaAtivaRais = 0; // Default: Cod.
+        let direcaoOrdenacaoRais = 'asc';
+
+        function parseBrInt(val) {
+            if (!val) return 0;
+            return parseInt(val.replace(/\./g, ''), 10) || 0;
+        }
+
+        function parseBrFloat(val) {
+            if (!val) return 0;
+            return parseFloat(val.replace(/%/g, '').replace(/,/g, '.')) || 0;
+        }
+
+        function formatarCrescimento(valText, valNum) {
+            if (!valText || valText === '0,00%' || valNum === 0) {
+                return '<span class="growth-indicator" style="color:var(--text-muted);">0,00%</span>';
+            }
+            const isPos = valNum >= 0;
+            const arrow = isPos ? '▲' : '▼';
+            const cssClass = isPos ? 'growth-up' : 'growth-down';
+            return '<span class="growth-indicator ' + cssClass + '">' + arrow + ' ' + valText + '</span>';
+        }
+
+        function carregarTabelaRais() {
+            const tbody = document.getElementById('tbody-rais-estabelecimentos');
+            const tfoot = document.getElementById('tfoot-rais-estabelecimentos');
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:20px;">Carregando...</td></tr>';
+
+            const caminho = "csv/Cópia de RAIS Estabelecimentos - Bahia 2023-2025.csv";
+
+            fetch(caminho)
+                .then(response => response.arrayBuffer())
+                .then(buffer => {
+                    const decoder = new TextDecoder('windows-1252');
+                    const text = decoder.decode(buffer);
+                    const rows = d3.dsvFormat(";").parseRows(text);
+                    
+                    if (rows.length < 3) {
+                        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:20px;">Nenhum dado encontrado.</td></tr>';
+                        return;
+                    }
+
+                    const dataRows = [];
+                    for (let r = 2; r < rows.length; r++) {
+                        const row = rows[r];
+                        if (row.length < 2 || !row[1]) continue;
+
+                        const codText = (row[0] || '').trim();
+                        const cnaeText = (row[1] || '').trim();
+                        const est2023Text = (row[2] || '').trim();
+                        const est2025Text = (row[3] || '').trim();
+                        const estCrescText = (row[4] || '').trim();
+                        const vinc2023Text = (row[5] || '').trim();
+                        const vinc2025Text = (row[6] || '').trim();
+                        const vincCrescText = (row[7] || '').trim();
+
+                        const parsedRow = {
+                            cod: codText,
+                            cnae: cnaeText,
+                            est2023_txt: est2023Text,
+                            est2025_txt: est2025Text,
+                            estCresc_txt: estCrescText,
+                            vinc2023_txt: vinc2023Text,
+                            vinc2025_txt: vinc2025Text,
+                            vincCresc_txt: vincCrescText,
+                            
+                            // parsed numeric values for sorting
+                            est2023: parseBrInt(est2023Text),
+                            est2025: parseBrInt(est2025Text),
+                            estCresc: parseBrFloat(estCrescText),
+                            vinc2023: parseBrInt(vinc2023Text),
+                            vinc2025: parseBrInt(vinc2025Text),
+                            vincCresc: parseBrFloat(vincCrescText)
+                        };
+
+                        if (cnaeText.toLowerCase() === 'total' || codText === '') {
+                            raisDataTotal = parsedRow;
+                        } else {
+                            dataRows.push(parsedRow);
+                        }
+                    }
+
+                    raisDataRaw = dataRows;
+                    
+                    // Ordena por Codigo ascendente por padrão
+                    ordenarTabelaRaisSilencioso(0, 'asc');
+                    renderizarTabelaRais();
+                    renderizarTotalRais();
+                })
+                .catch(err => {
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#ef4444;padding:20px;">Erro ao carregar: ' + err.message + '</td></tr>';
+                });
+        }
+
+        function renderizarTotalRais() {
+            const tfoot = document.getElementById('tfoot-rais-estabelecimentos');
+            tfoot.innerHTML = '';
+            if (!raisDataTotal) return;
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td></td>
+                <td><strong>Total</strong></td>
+                <td><strong>${raisDataTotal.est2023_txt}</strong></td>
+                <td><strong>${raisDataTotal.est2025_txt}</strong></td>
+                <td>${formatarCrescimento(raisDataTotal.estCresc_txt, raisDataTotal.estCresc)}</td>
+                <td><strong>${raisDataTotal.vinc2023_txt}</strong></td>
+                <td><strong>${raisDataTotal.vinc2025_txt}</strong></td>
+                <td>${formatarCrescimento(raisDataTotal.vincCresc_txt, raisDataTotal.vincCresc)}</td>
+            `;
+            tfoot.appendChild(tr);
+        }
+
+        function renderizarTabelaRais() {
+            const tbody = document.getElementById('tbody-rais-estabelecimentos');
+            const total = raisDataRaw.length;
+            
+            document.getElementById('rais-page-info').textContent = total === 0
+                ? '0 resultados'
+                : ((raisPage - 1) * raisPageSize + 1) + '-' + Math.min(raisPage * raisPageSize, total) + ' de ' + total;
+
+            document.getElementById('rais-prev-btn').disabled = raisPage === 1;
+            document.getElementById('rais-next-btn').disabled = raisPage * raisPageSize >= total;
+
+            const pageData = raisDataRaw.slice((raisPage - 1) * raisPageSize, raisPage * raisPageSize);
+            tbody.innerHTML = '';
+
+            if (pageData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:20px;">Nenhum dado encontrado.</td></tr>';
+                return;
+            }
+
+            pageData.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.cod}</td>
+                    <td><strong>${item.cnae}</strong></td>
+                    <td>${item.est2023_txt}</td>
+                    <td>${item.est2025_txt}</td>
+                    <td>${formatarCrescimento(item.estCresc_txt, item.estCresc)}</td>
+                    <td>${item.vinc2023_txt}</td>
+                    <td>${item.vinc2025_txt}</td>
+                    <td>${formatarCrescimento(item.vincCresc_txt, item.vincCresc)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            atualizarIndicadoresOrdenacaoRais();
+        }
+
+        function changeRaisPage(dir) {
+            raisPage += dir;
+            renderizarTabelaRais();
+        }
+
+        function ordenarTabelaRaisSilencioso(indice, direcao) {
+            colunaAtivaRais = indice;
+            direcaoOrdenacaoRais = direcao || 'desc';
+
+            raisDataRaw.sort((a, b) => {
+                let valA, valB;
+                switch (indice) {
+                    case 0:
+                        valA = parseInt(a.cod) || 0;
+                        valB = parseInt(b.cod) || 0;
+                        break;
+                    case 1:
+                        return direcaoOrdenacaoRais === 'asc'
+                            ? a.cnae.localeCompare(b.cnae, 'pt-BR')
+                            : b.cnae.localeCompare(a.cnae, 'pt-BR');
+                    case 2:
+                        valA = a.est2023; valB = b.est2023; break;
+                    case 3:
+                        valA = a.est2025; valB = b.est2025; break;
+                    case 4:
+                        valA = a.estCresc; valB = b.estCresc; break;
+                    case 5:
+                        valA = a.vinc2023; valB = b.vinc2023; break;
+                    case 6:
+                        valA = a.vinc2025; valB = b.vinc2025; break;
+                    case 7:
+                        valA = a.vincCresc; valB = b.vincCresc; break;
+                    default:
+                        valA = 0; valB = 0;
+                }
+                return direcaoOrdenacaoRais === 'asc' ? valA - valB : valB - valA;
+            });
+        }
+
+        function ordenarTabelaRais(indice) {
+            if (raisDataRaw.length === 0) return;
+
+            if (indice === colunaAtivaRais) {
+                direcaoOrdenacaoRais = direcaoOrdenacaoRais === 'asc' ? 'desc' : 'asc';
+            } else {
+                colunaAtivaRais = indice;
+                direcaoOrdenacaoRais = 'desc'; // Padrão: maior primeiro
+            }
+
+            ordenarTabelaRaisSilencioso(colunaAtivaRais, direcaoOrdenacaoRais);
+            raisPage = 1;
+            renderizarTabelaRais();
+        }
+
+        function atualizarIndicadoresOrdenacaoRais() {
+            for (let i = 0; i < 8; i++) {
+                const span = document.getElementById('sort-rais-' + i);
+                if (!span) continue;
+                if (i === colunaAtivaRais) {
+                    span.textContent = direcaoOrdenacaoRais === 'asc' ? ' ▲' : ' ▼';
+                    span.className = 'sort-indicator active';
+                } else {
+                    span.textContent = ' ⇅';
+                    span.className = 'sort-indicator inactive';
+                }
+            }
+        }
+
+        // ============================================================
         // FUNÇÕES DO PERFIL DAS COMPRAS PÚBLICAS
         // ============================================================
         function formatarMoeda(valor) {
@@ -4164,6 +4451,7 @@
             handleRouting();
             window.addEventListener('hashchange', handleRouting);
             atualizarTabelaCrescimento();
+            carregarTabelaRais();
             updateKpisAndTooltips();
             processarDadosPerfil();
             popularFiltroSetorPerfil();
