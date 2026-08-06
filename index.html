@@ -3052,50 +3052,95 @@
         }
 
         // Modal triggers
-        function openModal(sectorName) {
-            const rais = getRaisDataForSector(sectorName);
+        function openModal(sectorName, grupoDados) {
             const year = "2025";
 
             document.getElementById("modal-sector-title").textContent = sectorName;
             const body = document.getElementById("modal-content-body");
 
             let html = "";
-            if (rais) {
-                const estVal = rais.est[year] || 0;
-                const vinVal = rais.vin[year] || 0;
-                html += `<p style="margin-bottom: 16px;">O setor <strong>${sectorName}</strong> possui <strong>${formatNumber(estVal)}</strong> estabelecimentos e <strong>${formatNumber(vinVal)}</strong> vínculos formais registrados em <strong>${year}</strong> na Bahia.</p>`;
 
-                html += `
-                    <h3 style="font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Comparação Anual (RAIS)</h3>
+            function montarTabelaModal(titulo, dados) {
+                return `
+                    <h3 style="font-size: 13px; font-weight: 600; color: var(--text-dark); margin: 16px 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">${titulo}</h3>
                     <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px;">
                         <thead>
                             <tr style="background: var(--bg-light);">
                                 <th style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: center;">Ano</th>
-                                <th style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">Estabelecimentos</th>
-                                <th style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">Vínculos</th>
+                                <th style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">Quantidade</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: center;">2023</td>
-                                <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.est[2023])}</td>
-                                <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.vin[2023])}</td>
+                                <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(dados['2023'])}</td>
                             </tr>
                             <tr>
                                 <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: center;">2024</td>
-                                <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.est[2024])}</td>
-                                <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.vin[2024])}</td>
+                                <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(dados['2024'])}</td>
                             </tr>
                             <tr>
                                 <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: center;">2025</td>
-                                <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.est[2025])}</td>
-                                <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.vin[2025])}</td>
+                                <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(dados['2025'])}</td>
+                            </tr>
+                            <tr style="background: var(--bg-light); font-weight: 600;">
+                                <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: center;">Total</td>
+                                <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(dados.total)}</td>
                             </tr>
                         </tbody>
                     </table>
                 `;
+            }
+
+            if (grupoDados) {
+                const nomeSetor = NOMES_SETOR[grupoDados.setor] || grupoDados.setor;
+                html += `<p style="margin-bottom: 16px;">
+                    <strong>Código CNAE:</strong> ${grupoDados.codigo}<br/>
+                    <strong>Setor Econômico:</strong> ${nomeSetor}<br/>
+                    <strong>Seção CNAE:</strong> ${grupoDados.secao}
+                </p>`;
+                html += montarTabelaModal("Estabelecimentos (RAIS)", grupoDados.estabelecimentos);
+                html += montarTabelaModal("Vínculos Formais (RAIS)", grupoDados.vinculos);
             } else {
-                html += `<p>Não foram encontrados registros consolidados da RAIS para o setor <strong>${sectorName}</strong>.</p>`;
+                const rais = getRaisDataForSector(sectorName);
+
+                if (rais) {
+                    const estVal = rais.est[year] || 0;
+                    const vinVal = rais.vin[year] || 0;
+                    html += `<p style="margin-bottom: 16px;">O setor <strong>${sectorName}</strong> possui <strong>${formatNumber(estVal)}</strong> estabelecimentos e <strong>${formatNumber(vinVal)}</strong> vínculos formais registrados em <strong>${year}</strong> na Bahia.</p>`;
+
+                    html += `
+                        <h3 style="font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Comparação Anual (RAIS)</h3>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px;">
+                            <thead>
+                                <tr style="background: var(--bg-light);">
+                                    <th style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: center;">Ano</th>
+                                    <th style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">Estabelecimentos</th>
+                                    <th style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">Vínculos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: center;">2023</td>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.est[2023])}</td>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.vin[2023])}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: center;">2024</td>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.est[2024])}</td>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.vin[2024])}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: center;">2025</td>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.est[2025])}</td>
+                                    <td style="padding: 8px; border-bottom: 1px solid var(--border-color); text-align: right;">${formatNumber(rais.vin[2025])}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+                } else {
+                    html += `<p>Não foram encontrados registros consolidados da RAIS para o setor <strong>${sectorName}</strong>.</p>`;
+                }
             }
 
             body.innerHTML = html;
@@ -3266,92 +3311,173 @@
         }
 
         // ----------------------------------------------------
-        // 2. ECONOMIC STRUCTURE (TREEMAP)
+        // 2. ECONOMIC STRUCTURE (TREEMAP) - dados do CSV classificado
         // ----------------------------------------------------
-        let treemapGrandeSector = null;
+        let treemapFiltroAtivo = null;
+        let dadosTreemapCSV = [];
+        let treemapDadosCarregados = false;
+        let treemapLarguraAtual = 0;
 
-        function buildTreemapFilterButtons() {
+        const CORES_SETOR = {
+            'AGRICULTURA': '#10b981',
+            'INDUSTRIA': '#f97316',
+            'SERVICOS': '#0a4ea3',
+            'COMERCIO': '#ef4444',
+            'ADM_PUBLICA': '#8b5cf6'
+        };
+
+        const NOMES_SETOR = {
+            'AGRICULTURA': 'Agricultura',
+            'INDUSTRIA': 'Indústria',
+            'SERVICOS': 'Serviços',
+            'COMERCIO': 'Comércio',
+            'ADM_PUBLICA': 'Administração Pública'
+        };
+
+        const ORDEM_SETORES = ['ADM_PUBLICA', 'AGRICULTURA', 'COMERCIO', 'INDUSTRIA', 'SERVICOS'];
+        const treemapCSVParser = d3.dsvFormat(';');
+
+        async function carregarDadosTreemapCSV() {
+            try {
+                const response = await fetch('csv/consulta67806166_classificado.csv');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const buffer = await response.arrayBuffer();
+                const text = new TextDecoder('windows-1252').decode(buffer);
+                const rows = treemapCSVParser.parseRows(text);
+
+                dadosTreemapCSV = rows.slice(1)
+                    .filter(r => r.length >= 12 && r[0].trim() !== '' && r[0] !== 'Total')
+                    .map(r => ({
+                        codigo: r[0].trim(),
+                        grupo: r[1].trim(),
+                        setor: r[2].trim(),
+                        secao: r[3].trim(),
+                        vinculos: {
+                            '2023': parseInt(r[6]) || 0,
+                            '2024': parseInt(r[5]) || 0,
+                            '2025': parseInt(r[4]) || 0,
+                            total: parseInt(r[7]) || 0
+                        },
+                        estabelecimentos: {
+                            '2023': parseInt(r[10]) || 0,
+                            '2024': parseInt(r[9]) || 0,
+                            '2025': parseInt(r[8]) || 0,
+                            total: parseInt(r[11]) || 0
+                        }
+                    }));
+
+                treemapDadosCarregados = true;
+                construirFiltrosTreemap();
+                configurarResizeTreemap();
+                drawTreemap();
+            } catch (error) {
+                console.error('Erro ao carregar dados do Treemap:', error);
+                const subtitle = document.getElementById('treemap-subtitle');
+                if (subtitle) subtitle.textContent = 'Erro ao carregar dados';
+                const container = d3.select('#bahiaTreemap');
+                container.selectAll('*').remove();
+                container.append('div')
+                    .attr('style', 'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);font-size:13px;text-align:center;padding:0 16px;')
+                    .text('Não foi possível carregar os dados do Treemap (csv/consulta67806166_classificado.csv).');
+            }
+        }
+
+        function construirFiltrosTreemap() {
             const container = document.getElementById('treemapFiltroSetor');
+            if (!container) return;
             container.innerHTML = '';
-            const sectors = new Set(window.dashboardData.structure.map(r => r[0]));
-            ['Todos', ...Array.from(sectors).sort()].forEach(s => {
+
+            const setores = ['Todos', ...ORDEM_SETORES.filter(s => dadosTreemapCSV.some(d => d.setor === s))];
+
+            setores.forEach(s => {
                 const btn = document.createElement('button');
-                const isActive = s === 'Todos' ? treemapGrandeSector === null : s === treemapGrandeSector;
-                btn.className = 'treemap-btn' + (isActive ? ' active' : '');
-                btn.textContent = s;
-                btn.dataset.sector = s;
+                btn.className = 'treemap-btn' + (s === 'Todos' ? ' active' : '');
+                btn.textContent = s === 'Todos' ? 'Todos' : (NOMES_SETOR[s] || s);
+                btn.dataset.setor = s;
                 btn.addEventListener('click', () => {
-                    document.querySelectorAll('#treemapFiltroSetor .treemap-btn').forEach(b =>
-                        b.classList.toggle('active', b.dataset.sector === s)
+                    container.querySelectorAll('.treemap-btn').forEach(b =>
+                        b.classList.toggle('active', b.dataset.setor === s)
                     );
-                    treemapGrandeSector = s === 'Todos' ? null : s;
+                    treemapFiltroAtivo = s === 'Todos' ? null : s;
                     drawTreemap();
                 });
                 container.appendChild(btn);
             });
         }
 
-        function drawTreemap() {
-            const container = d3.select("#bahiaTreemap");
-            container.selectAll("*").remove();
+        function configurarResizeTreemap() {
+            const container = document.getElementById('bahiaTreemap');
+            if (!container || container.__treemapObserver || typeof ResizeObserver === 'undefined') return;
+            const observer = new ResizeObserver(() => {
+                const largura = container.clientWidth || 0;
+                if (Math.abs(largura - treemapLarguraAtual) > 5) {
+                    drawTreemap();
+                }
+            });
+            observer.observe(container);
+            container.__treemapObserver = observer;
+        }
 
-            let data = window.dashboardData.structure;
-            if (treemapGrandeSector) {
-                data = data.filter(r => r[0] === treemapGrandeSector);
+        function drawTreemap() {
+            const container = d3.select('#bahiaTreemap');
+            container.selectAll('*').remove();
+
+            if (!treemapDadosCarregados) {
+                container.append('div')
+                    .attr('style', 'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);')
+                    .text('Carregando dados...');
+                return;
             }
 
-            const width = container.node().clientWidth || 400;
-            const height = 350;
+            let dadosFiltrados = dadosTreemapCSV;
+            if (treemapFiltroAtivo) {
+                dadosFiltrados = dadosFiltrados.filter(d => d.setor === treemapFiltroAtivo);
+            }
 
-            const svg = container.append("svg")
-                .attr("width", width)
-                .attr("height", height)
-                .attr("viewBox", `0 0 ${width} ${height}`)
-                .attr("preserveAspectRatio", "xMidYMid meet");
+            const totalEstabelecimentos = dadosFiltrados.reduce((sum, d) => sum + d.estabelecimentos.total, 0);
+            document.getElementById('treemap-subtitle').textContent = `${formatNumber(totalEstabelecimentos)} estabelecimentos`;
 
-            const gSectorMap = new Map();
-            let grandTotal = 0;
+            if (dadosFiltrados.length === 0) {
+                container.append('div')
+                    .attr('style', 'display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);')
+                    .text('Nenhum dado disponível para o filtro selecionado');
+                return;
+            }
 
-            data.forEach(row => {
-                const [gSector, secID, divID, className, est] = row;
-                grandTotal += est;
-
-                if (!gSectorMap.has(gSector)) {
-                    gSectorMap.set(gSector, new Map());
-                }
-                const classMap = gSectorMap.get(gSector);
-                if (!classMap.has(className)) {
-                    classMap.set(className, 0);
-                }
-                classMap.set(className, classMap.get(className) + est);
+            const setorMap = new Map();
+            dadosFiltrados.forEach(d => {
+                if (!setorMap.has(d.setor)) setorMap.set(d.setor, []);
+                setorMap.get(d.setor).push({
+                    name: d.grupo,
+                    value: d.estabelecimentos.total,
+                    dados: d
+                });
             });
 
-            document.getElementById("treemap-subtitle").textContent = `${formatNumber(grandTotal)} estabelecimentos`;
-
-            const children = Array.from(gSectorMap.entries()).map(([sector, classes]) => {
-                const sortedClasses = Array.from(classes.entries()).sort((a, b) => b[1] - a[1]);
-                const topClasses = sortedClasses.slice(0, 8).map(([cName, value]) => ({
-                    name: cName,
-                    value: value
-                }));
-                const otherValue = sortedClasses.slice(8).reduce((sum, c) => sum + c[1], 0);
-                if (otherValue > 0) {
-                    topClasses.push({
-                        name: `Outros (${sector})`,
-                        value: otherValue
-                    });
-                }
-
+            const children = Array.from(setorMap.entries()).map(([setor, grupos]) => {
+                grupos.sort((a, b) => b.value - a.value);
                 return {
-                    name: sector,
-                    children: topClasses
+                    name: setor,
+                    children: grupos
                 };
             });
 
             const rootData = {
-                name: "Bahia",
+                name: 'Bahia',
                 children: children
             };
+
+            const width = container.node().clientWidth || 400;
+            treemapLarguraAtual = width;
+            const height = 350;
+
+            const svg = container.append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .attr('viewBox', `0 0 ${width} ${height}`)
+                .attr('preserveAspectRatio', 'xMidYMid meet');
 
             const root = d3.hierarchy(rootData)
                 .sum(d => d.value)
@@ -3363,66 +3489,63 @@
                 .paddingOuter(2)
                 (root);
 
-            const nodes = svg.selectAll("g")
+            const nodes = svg.selectAll('g')
                 .data(root.leaves())
                 .enter()
-                .append("g")
-                .attr("transform", d => `translate(${d.x0},${d.y0})`);
+                .append('g')
+                .attr('transform', d => `translate(${d.x0},${d.y0})`);
 
-            nodes.append("rect")
-                .attr("width", d => d.x1 - d.x0)
-                .attr("height", d => d.y1 - d.y0)
-                .attr("fill", d => {
-                    const sector = d.parent.data.name;
-                    return macroSectorColors[sector] || "#94a3b8";
-                })
-                .attr("class", "treemap-rect")
-                .on("mouseover", function (event, d) {
-                    const sector = d.parent.data.name;
-                    const name = d.data.name;
-                    const val = d.data.value;
-                    const year = 2025;
+            nodes.append('rect')
+                .attr('width', d => d.x1 - d.x0)
+                .attr('height', d => d.y1 - d.y0)
+                .attr('fill', d => CORES_SETOR[d.parent.data.name] || '#94a3b8')
+                .attr('class', 'treemap-rect')
+                .on('mouseover', function (event, d) {
+                    const setor = d.parent.data.name;
+                    const nomeSetor = NOMES_SETOR[setor] || setor;
+                    const dados = d.data.dados;
+                    const total = dados.estabelecimentos.total;
+                    const participacao = totalEstabelecimentos > 0 ? ((total / totalEstabelecimentos) * 100) : 0;
+                    const vinculos2025 = dados.vinculos['2025'];
+                    const est2023 = dados.estabelecimentos['2023'];
+                    const est2025 = dados.estabelecimentos['2025'];
+                    const variacao = est2023 > 0 ? ((est2025 - est2023) / est2023 * 100) : 0;
 
                     let html = `
-                        <strong>${name}</strong><br/>
-                        Setor: ${sector}<br/>
-                        Estabelecimentos: <strong>${formatNumber(val)}</strong><br/>
-                        Participação: <strong>${((val / grandTotal) * 100).toFixed(2)}%</strong>
+                        <strong>${d.data.name}</strong><br/>
+                        Setor: ${nomeSetor}<br/>
+                        Estabelecimentos: <strong>${formatNumber(total)}</strong><br/>
+                        Participação: <strong>${participacao.toFixed(2)}%</strong><br/>
+                        Vínculos (2025): <strong>${formatNumber(vinculos2025)}</strong><br/>
+                        Variação (2023→2025): <strong style="color: ${variacao >= 0 ? '#10b981' : '#ef4444'}">${variacao >= 0 ? '+' : ''}${variacao.toFixed(1)}%</strong>
                     `;
 
-                    const rais = getRaisDataForSector(name);
-                    if (rais) {
-                        html += `<br/><hr style="margin: 6px 0; border: 0; border-top: 1px solid rgba(255,255,255,0.2);"/>`;
-                        html += `Empresas (RAIS ${year}): <strong>${formatNumber(rais.est[year] || 0)}</strong><br/>`;
-                        html += `Empregos (RAIS ${year}): <strong>${formatNumber(rais.vin[year] || 0)}</strong>`;
-                    }
-                    tooltip.style("display", "block").html(html);
+                    tooltip.style('display', 'block').html(html);
                 })
-                .on("mousemove", function (event) {
-                    tooltip.style("left", (event.pageX + 10) + "px")
-                        .style("top", (event.pageY - 15) + "px");
+                .on('mousemove', function (event) {
+                    tooltip.style('left', (event.pageX + 10) + 'px')
+                        .style('top', (event.pageY - 15) + 'px');
                 })
-                .on("mouseleave", function () {
-                    tooltip.style("display", "none");
+                .on('mouseleave', function () {
+                    tooltip.style('display', 'none');
                 })
-                .on("click", function (event, d) {
-                    openModal(d.data.name);
+                .on('click', function (event, d) {
+                    openModal(d.data.name, d.data.dados);
                 });
 
-            nodes.append("text")
-                .attr("x", 4)
-                .attr("y", 14)
-                .attr("class", "treemap-text")
+            nodes.append('text')
+                .attr('x', 4)
+                .attr('y', 14)
+                .attr('class', 'treemap-text')
                 .text(d => {
                     const w = d.x1 - d.x0;
                     const h = d.y1 - d.y0;
                     if (w > 60 && h > 20) {
-                        return d.data.name.substring(0, 15) + "...";
+                        const nome = d.data.name;
+                        return nome.length > 15 ? nome.substring(0, 15) + '...' : nome;
                     }
-                    return "";
+                    return '';
                 });
-
-            buildTreemapFilterButtons();
         }
 
         // (Dropdown de territórios removido — comparação fixa Bahia vs Brasil)
@@ -4149,6 +4272,7 @@
                 renderizarPerfil();
             }
             carregarDadosVCR();
+            carregarDadosTreemapCSV();
             document.getElementById('filtro-setor-vcr').addEventListener('change', function () {
                 renderizarGraficosVCR(this.value);
             });

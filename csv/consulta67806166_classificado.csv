@@ -1,0 +1,272 @@
+Codigo;CNAE 2.0 Grupo;Setor Economico;Secao CNAE;2025;2024;2023;Total_Vinculos;2025;2024;2023;Total_Estabelecimentos
+011;Produção de Lavouras Temporárias;AGRICULTURA;A;33525;32649;31661;97835;2308;2294;2257;6859
+012;Horticultura e Floricultura;AGRICULTURA;A;2906;2919;2434;8259;206;200;190;596
+013;Produção de Lavouras Permanentes;AGRICULTURA;A;42709;41559;40690;124958;4862;4744;4707;14313
+014;Produção de Sementes e Mudas Certificadas;AGRICULTURA;A;1793;1722;1549;5064;102;96;91;289
+015;Pecuária;AGRICULTURA;A;27394;26914;26479;80787;8367;8343;8343;25053
+016;Atividades de Apoio à Agricultura e à Pecuária;AGRICULTURA;A;10121;10021;9944;30086;2875;2811;2777;8463
+017;Caça e Serviços Relacionados;AGRICULTURA;A;3;3;2;8;1;1;1;3
+021;Produção Florestal - Florestas Plantadas;AGRICULTURA;A;3576;3632;3452;10660;197;210;212;619
+022;Produção Florestal - Florestas Nativas;AGRICULTURA;A;52;62;134;248;22;21;21;64
+023;Atividades de Apoio à Produção Florestal;AGRICULTURA;A;5122;5703;6234;17059;96;99;97;292
+031;Pesca;AGRICULTURA;A;30;27;27;84;15;13;13;41
+032;AqüIcultura;AGRICULTURA;A;932;945;974;2851;103;107;111;321
+060;Extração de Petróleo e Gás Natural;INDUSTRIA;B;3207;3027;2494;8728;22;23;24;69
+071;Extração de Minério de Ferro;INDUSTRIA;B;288;316;374;978;10;10;11;31
+072;Extração de Minerais Metálicos Não-Ferrosos;INDUSTRIA;B;8098;7989;7975;24062;36;38;39;113
+081;Extração de Pedra, Areia e Argila;INDUSTRIA;B;4821;4598;4187;13606;441;420;402;1263
+089;Extração de Outros Minerais Não-Metálicos;INDUSTRIA;B;2524;2329;2146;6999;85;75;72;232
+091;Atividades de Apoio à Extração de Petróleo e Gás Natural;INDUSTRIA;B;2470;2659;2808;7937;37;36;34;107
+099;Atividades de Apoio à Extração de Minerais, Exceto Petróleo e Gás Natural;INDUSTRIA;B;254;329;354;937;23;25;23;71
+101;Abate e Fabricação de Produtos de Carne;INDUSTRIA;C;13657;12561;11239;37457;152;151;146;449
+102;Preservação do Pescado e Fabricação de Produtos do Pescado;INDUSTRIA;C;741;727;707;2175;28;28;25;81
+103;Fabricação de Conservas de Frutas, Legumes e Outros Vegetais;INDUSTRIA;C;3166;3016;2800;8982;242;220;214;676
+104;Fabricação de óleos e Gorduras Vegetais e Animais;INDUSTRIA;C;1654;1636;1540;4830;39;40;40;119
+105;Laticínios;INDUSTRIA;C;5749;5486;5074;16309;443;410;391;1244
+106;Moagem, Fabricação de Produtos Amiláceos e de Alimentos para Animais;INDUSTRIA;C;6533;6012;5753;18298;223;219;216;658
+107;Fabricação e Refino de Açúcar;INDUSTRIA;C;3001;3165;3100;9266;6;6;6;18
+108;Torrefação e Moagem de Café;INDUSTRIA;C;973;975;962;2910;101;103;100;304
+109;Fabricação de Outros Produtos Alimentícios;INDUSTRIA;C;19719;18351;17599;55669;2324;2179;2050;6553
+111;Fabricação de Bebidas Alcoólicas;INDUSTRIA;C;2965;2982;2723;8670;70;67;60;197
+112;Fabricação de Bebidas Não-Alcoólicas;INDUSTRIA;C;4348;4149;3807;12304;61;56;55;172
+121;Processamento Industrial do Fumo;INDUSTRIA;C;671;665;882;2218;3;3;3;9
+122;Fabricação de Produtos do Fumo;INDUSTRIA;C;386;379;375;1140;16;17;14;47
+131;Preparação e Fiação de Fibras Têxteis;INDUSTRIA;C;2564;2415;2057;7036;55;55;58;168
+132;Tecelagem, Exceto Malha;INDUSTRIA;C;4838;4974;4464;14276;22;21;21;64
+133;Fabricação de Tecidos de Malha;INDUSTRIA;C;300;291;265;856;8;6;6;20
+134;Acabamentos em Fios, Tecidos e Artefatos Têxteis;INDUSTRIA;C;365;420;389;1174;74;70;65;209
+135;Fabricação de Artefatos Têxteis, Exceto Vestuário;INDUSTRIA;C;3096;2813;2603;8512;217;206;191;614
+141;Confecção de Artigos do Vestuário e Acessórios;INDUSTRIA;C;9748;9372;9709;28829;985;968;929;2882
+142;Fabricação de Artigos de Malharia e Tricotagem;INDUSTRIA;C;2697;2318;2361;7376;15;14;14;43
+151;Curtimento e Outras Preparações de Couro;INDUSTRIA;C;788;808;746;2342;13;15;17;45
+152;Fabricação de Artigos para Viagem e de Artefatos Diversos de Couro;INDUSTRIA;C;1947;2091;1760;5798;131;133;136;400
+153;Fabricação de Calçados;INDUSTRIA;C;41696;38984;40250;120930;114;102;96;312
+154;Fabricação de Partes para Calçados, de Qualquer Material;INDUSTRIA;C;706;600;688;1994;18;17;15;50
+161;Desdobramento de Madeira;INDUSTRIA;C;508;475;396;1379;75;74;70;219
+162;Fabricação de Produtos de Madeira, Cortiça e Material Trançado, Exceto Móveis;INDUSTRIA;C;2116;2080;2092;6288;301;285;286;872
+171;Fabricação de Celulose e Outras Pastas para a Fabricação de Papel;INDUSTRIA;C;3712;3810;3737;11259;4;4;4;12
+172;Fabricação de Papel, Cartolina e Papel-Cartão;INDUSTRIA;C;655;645;616;1916;8;9;6;23
+173;Fabricação de Embalagens de Papel, Cartolina, Papel-Cartão e Papelão Ondulado;INDUSTRIA;C;2343;2256;2129;6728;93;88;88;269
+174;Fabricação de Produtos Diversos de Papel, Cartolina, Papel-Cartão e Papelão Ondulado;INDUSTRIA;C;2045;2055;1972;6072;78;81;84;243
+181;Atividade de Impressão;INDUSTRIA;C;2805;2753;2434;7992;592;577;546;1715
+182;Serviços de Pré-Impressão e Acabamentos Gráficos;INDUSTRIA;C;603;581;537;1721;154;141;138;433
+183;Reprodução de Materiais Gravados em Qualquer Suporte;INDUSTRIA;C;8;9;9;26;5;5;5;15
+192;Fabricação de Produtos Derivados do Petróleo;INDUSTRIA;C;1532;1551;1693;4776;21;18;15;54
+193;Fabricação de Biocombustíveis;INDUSTRIA;C;3384;2677;2606;8667;15;15;12;42
+201;Fabricação de Produtos Químicos Inorgânicos;INDUSTRIA;C;4386;3996;3947;12329;82;76;76;234
+202;Fabricação de Produtos Químicos Orgânicos;INDUSTRIA;C;2563;2519;2581;7663;30;29;28;87
+203;Fabricação de Resinas e Elastômeros;INDUSTRIA;C;1041;1023;1119;3183;28;27;26;81
+204;Fabricação de Fibras Artificiais e Sintéticas;INDUSTRIA;C;522;537;473;1532;6;8;7;21
+205;Fabricação de Defensivos Agrícolas e Desinfestantes Domissanitários;INDUSTRIA;C;168;167;177;512;6;7;7;20
+206;Fabricação de Sabões, Detergentes, Produtos de Limpeza, Cosméticos, Produtos de Perfumaria e de Higiene Pessoal;INDUSTRIA;C;5748;5651;5600;16999;200;193;189;582
+207;Fabricação de Tintas, Vernizes, Esmaltes, Lacas e Produtos Afins;INDUSTRIA;C;758;765;714;2237;51;46;44;141
+209;Fabricação de Produtos e Preparados Químicos Diversos;INDUSTRIA;C;1106;1063;1041;3210;47;47;45;139
+211;Fabricação de Produtos Farmoquímicos;INDUSTRIA;C;20;19;18;57;1;1;1;3
+212;Fabricação de Produtos Farmacêuticos;INDUSTRIA;C;1231;1293;1064;3588;6;6;6;18
+221;Fabricação de Produtos de Borracha;INDUSTRIA;C;7790;7650;7518;22958;122;119;108;349
+222;Fabricação de Produtos de Material Plástico;INDUSTRIA;C;12505;12212;11169;35886;401;391;364;1156
+231;Fabricação de Vidro e de Produtos do Vidro;INDUSTRIA;C;1432;1411;1366;4209;105;94;95;294
+232;Fabricação de Cimento;INDUSTRIA;C;329;316;293;938;6;6;6;18
+233;Fabricação de Artefatos de Concreto, Cimento, Fibrocimento, Gesso e Materiais Semelhantes;INDUSTRIA;C;7891;7731;7111;22733;783;762;705;2250
+234;Fabricação de Produtos Cerâmicos;INDUSTRIA;C;6831;6614;6704;20149;339;330;322;991
+239;Aparelhamento de Pedras e Fabricação de Outros Produtos de Minerais Não-Metálicos;INDUSTRIA;C;3363;3200;3123;9686;516;496;466;1478
+241;Produção de Ferro-Gusa e de Ferroligas;INDUSTRIA;C;1641;1593;1582;4816;4;3;3;10
+242;Siderurgia;INDUSTRIA;C;558;612;531;1701;10;9;10;29
+243;Produção de Tubos de Aço, Exceto Tubos sem Costura;INDUSTRIA;C;103;81;68;252;2;2;2;6
+244;Metalurgia dos Metais Não-Ferrosos;INDUSTRIA;C;516;781;857;2154;15;12;12;39
+245;Fundição;INDUSTRIA;C;98;111;93;302;15;14;12;41
+251;Fabricação de Estruturas Metálicas e Obras de Caldeiraria Pesada;INDUSTRIA;C;5365;6322;5768;17455;609;570;538;1717
+252;Fabricação de Tanques, Reservatórios Metálicos e Caldeiras;INDUSTRIA;C;161;160;309;630;8;7;8;23
+253;Forjaria, Estamparia, Metalurgia do Pó e Serviços de Tratamento de Metais;INDUSTRIA;C;1872;1724;1665;5261;395;372;350;1117
+254;Fabricação de Artigos de Cutelaria, de Serralheria e Ferramentas;INDUSTRIA;C;702;740;657;2099;275;259;235;769
+259;Fabricação de Produtos de Metal não Especificados Anteriormente;INDUSTRIA;C;3482;3188;3089;9759;256;242;228;726
+261;Fabricação de Componentes Eletrônicos;INDUSTRIA;C;146;128;141;415;11;12;11;34
+262;Fabricação de Equipamentos de Informática e Periféricos;INDUSTRIA;C;920;1086;1054;3060;24;25;28;77
+263;Fabricação de Equipamentos de Comunicação;INDUSTRIA;C;109;115;132;356;6;4;4;14
+264;Fabricação de Aparelhos de Recepção, Reprodução, Gravação e Amplificação de áudio e Vídeo;INDUSTRIA;C;347;459;397;1203;16;17;15;48
+265;Fabricação de Aparelhos e Instrumentos de Medida, Teste e Controle;INDUSTRIA;C;158;151;150;459;7;7;9;23
+266;Fabricação de Aparelhos Eletromédicos e Eletroterapêuticos e Equipamentos de Irradiação;INDUSTRIA;C;24;21;19;64;2;2;1;5
+267;Fabricação de Equipamentos e Instrumentos ópticos, Fotográficos e Cinematográficos;INDUSTRIA;C;6;8;3;17;2;2;1;5
+268;Fabricação de Mídias Virgens, Magnéticas e ópticas;INDUSTRIA;C;4;5;6;15;1;1;1;3
+271;Fabricação de Geradores, Transformadores e Motores Elétricos;INDUSTRIA;C;585;516;434;1535;33;28;26;87
+272;Fabricação de Pilhas, Baterias e Acumuladores Elétricos;INDUSTRIA;C;7;0;0;7;1;0;0;1
+273;Fabricação de Equipamentos para Distribuição e Controle de Energia Elétrica;INDUSTRIA;C;489;396;372;1257;48;46;42;136
+274;Fabricação de Lâmpadas e Outros Equipamentos de Iluminação;INDUSTRIA;C;443;474;448;1365;11;11;12;34
+275;Fabricação de Eletrodomésticos;INDUSTRIA;C;5868;5917;4527;16312;10;8;8;26
+279;Fabricação de Equipamentos e Aparelhos Elétricos não Especificados Anteriormente;INDUSTRIA;C;695;610;545;1850;22;20;22;64
+281;Fabricação de Motores, Bombas, Compressores e Equipamentos de Transmissão;INDUSTRIA;C;936;811;558;2305;32;32;27;91
+282;Fabricação de Máquinas e Equipamentos de Uso Geral;INDUSTRIA;C;490;404;440;1334;37;34;35;106
+283;Fabricação de Tratores e de Máquinas e Equipamentos para a Agricultura e Pecuária;INDUSTRIA;C;335;296;257;888;39;32;29;100
+284;Fabricação de Máquinas-Ferramenta;INDUSTRIA;C;127;104;116;347;12;9;10;31
+285;Fabricação de Máquinas e Equipamentos de Uso na Extração Mineral e na Construção;INDUSTRIA;C;619;614;566;1799;9;9;8;26
+286;Fabricação de Máquinas e Equipamentos de Uso Industrial Específico;INDUSTRIA;C;311;311;319;941;37;36;34;107
+291;Fabricação de Automóveis, Camionetas e Utilitários;INDUSTRIA;C;2102;261;0;2363;1;1;0;2
+293;Fabricação de Cabines, Carrocerias e Reboques para Veículos Automotores;INDUSTRIA;C;707;715;670;2092;83;88;81;252
+294;Fabricação de Peças e Acessórios para Veículos Automotores;INDUSTRIA;C;227;227;279;733;36;34;36;106
+295;Recondicionamento e Recuperação de Motores para Veículos Automotores;INDUSTRIA;C;474;439;444;1357;109;104;92;305
+301;Construção de Embarcações;INDUSTRIA;C;956;247;281;1484;15;13;13;41
+304;Fabricação de Aeronaves;INDUSTRIA;C;0;0;6;6;0;1;1;2
+309;Fabricação de Equipamentos de Transporte não Especificados Anteriormente;INDUSTRIA;C;160;148;114;422;23;22;22;67
+310;Fabricação de Móveis;INDUSTRIA;C;8774;8416;7880;25070;872;832;797;2501
+321;Fabricação de Artigos de Joalheria, Bijuteria e Semelhantes;INDUSTRIA;C;103;96;84;283;41;41;34;116
+322;Fabricação de Instrumentos Musicais;INDUSTRIA;C;3;4;1;8;3;4;3;10
+323;Fabricação de Artefatos para Pesca e Esporte;INDUSTRIA;C;70;59;63;192;8;6;6;20
+324;Fabricação de Brinquedos e Jogos Recreativos;INDUSTRIA;C;50;50;56;156;14;15;16;45
+325;Fabricação de Instrumentos e Materiais para Uso Médico e Odontológico e de Artigos ópticos;INDUSTRIA;C;1188;1184;1113;3485;206;190;180;576
+329;Fabricação de Produtos Diversos;INDUSTRIA;C;2012;1941;1845;5798;446;427;414;1287
+331;Manutenção e Reparação de Máquinas e Equipamentos;INDUSTRIA;C;9572;9204;9021;27797;1303;1271;1178;3752
+332;Instalação de Máquinas e Equipamentos;INDUSTRIA;C;2391;2267;1913;6571;311;285;251;847
+351;Geração, Transmissão e Distribuição de Energia Elétrica;INDUSTRIA;D;7768;6816;6814;21398;133;134;135;402
+352;Produção e Distribuição de Combustíveis Gasosos por Redes Urbanas;INDUSTRIA;D;387;320;316;1023;13;10;10;33
+353;Produção e Distribuição de Vapor, água Quente e Ar Condicionado;INDUSTRIA;D;68;69;65;202;2;2;1;5
+360;Captação, Tratamento e Distribuição de água;INDUSTRIA;E;8278;7411;7475;23164;134;118;96;348
+370;Esgoto e Atividades Relacionadas;INDUSTRIA;E;698;669;641;2008;33;38;35;106
+381;Coleta de Resíduos;INDUSTRIA;E;11349;10964;11376;33689;226;218;204;648
+382;Tratamento e Disposição de Resíduos;INDUSTRIA;E;3084;2456;2579;8119;48;44;44;136
+383;Recuperação de Materiais;INDUSTRIA;E;1375;1275;1215;3865;181;160;156;497
+390;Descontaminação e Outros Serviços de Gestão de Resíduos;INDUSTRIA;E;249;263;262;774;6;5;4;15
+411;Incorporação de Empreendimentos Imobiliários;INDUSTRIA;F;7870;7176;7483;22529;893;833;821;2547
+412;Construção de Edifícios;INDUSTRIA;F;64968;60570;54991;180529;5701;5529;5367;16597
+421;Construção de Rodovias, Ferrovias, Obras Urbanas e Obras de Arte Especiais;INDUSTRIA;F;13879;14110;14169;42158;927;971;950;2848
+422;Obras de Infra-Estrutura para Energia Elétrica, Telecomunicações, água, Esgoto e Transporte por Dutos;INDUSTRIA;F;23034;22363;26102;71499;527;467;413;1407
+429;Construção de Outras Obras de Infra-Estrutura;INDUSTRIA;F;17365;16776;17831;51972;994;1004;965;2963
+431;Demolição e Preparação do Terreno;INDUSTRIA;F;6781;6490;7311;20582;460;467;452;1379
+432;Instalações Elétricas, Hidráulicas e Outras Instalações em Construções;INDUSTRIA;F;16592;15379;14465;46436;1573;1453;1296;4322
+433;Obras de Acabamento;INDUSTRIA;F;5004;5037;5402;15443;809;781;731;2321
+439;Outros Serviços Especializados para Construção;INDUSTRIA;F;11605;10904;12977;35486;1312;1254;1179;3745
+451;Comércio de Veículos Automotores;COMERCIO;G;12050;11334;10678;34062;834;806;755;2395
+452;Manutenção e Reparação de Veículos Automotores;COMERCIO;G;11329;10811;9831;31971;3013;2778;2594;8385
+453;Comércio de Peças e Acessórios para Veículos Automotores;COMERCIO;G;22497;22095;21401;65993;4729;4618;4490;13837
+454;Comércio, Manutenção e Reparação de Motocicletas, Peças e Acessórios;COMERCIO;G;7807;7014;6431;21252;1407;1345;1280;4032
+461;Representantes Comerciais e Agentes do Comércio, Exceto de Veículos Automotores e Motocicletas;COMERCIO;G;3029;2730;2985;8744;1081;1064;1085;3230
+462;Comércio Atacadista de Matérias-Primas Agrícolas e Animais Vivos;COMERCIO;G;2798;2644;2600;8042;511;499;480;1490
+463;Comércio Atacadista Especializado em Produtos Alimentícios, Bebidas e Fumo;COMERCIO;G;40251;39856;38801;118908;2567;2448;2345;7360
+464;Comércio Atacadista de Produtos de Consumo Não-Alimentar;COMERCIO;G;14700;14404;13544;42648;1583;1491;1414;4488
+465;Comércio Atacadista de Equipamentos e Produtos de Tecnologias de Informação e Comunicação;COMERCIO;G;791;921;886;2598;119;116;117;352
+466;Comércio Atacadista de Máquinas, Aparelhos e Equipamentos, Exceto de Tecnologias de Informação e Comunicação;COMERCIO;G;3892;4020;3924;11836;433;412;386;1231
+467;Comércio Atacadista de Madeira, Ferragens, Ferramentas, Material Elétrico e Material de Construção;COMERCIO;G;8550;7854;7345;23749;675;641;610;1926
+468;Comércio Atacadista Especializado em Outros Produtos;COMERCIO;G;8485;8115;7642;24242;1025;948;906;2879
+469;Comércio Atacadista Não-Especializado;COMERCIO;G;22684;21702;18925;63311;550;526;489;1565
+471;Comércio Varejista Não-Especializado;COMERCIO;G;84604;83946;80911;249461;12714;12601;12397;37712
+472;Comércio Varejista de Produtos Alimentícios, Bebidas e Fumo;COMERCIO;G;33134;32039;30973;96146;9690;9142;8747;27579
+473;Comércio Varejista de Combustíveis para Veículos Automotores;COMERCIO;G;25064;24332;23045;72441;3361;3195;3085;9641
+474;Comércio Varejista de Material de Construção;COMERCIO;G;45334;45343;44274;134951;10570;10359;10027;30956
+475;Comércio Varejista de Equipamentos de Informática e Comunicação;COMERCIO;G;40422;40918;41184;122524;10308;10120;10005;30433
+476;Comércio Varejista de Artigos Culturais, Recreativos e Esportivos;COMERCIO;G;7422;7531;7614;22567;2135;2149;2130;6414
+477;Comércio Varejista de Produtos Farmacêuticos, Perfumaria e Cosméticos e Artigos Médicos, ópticos e Ortopédicos;COMERCIO;G;42524;41197;40307;124028;11747;11357;11050;34154
+478;Comércio Varejista de Produtos Novos não Especificados Anteriormente e de Produtos Usados;COMERCIO;G;63111;61843;61380;186334;18873;18533;18075;55481
+491;Transporte Ferroviário e Metroferroviário;SERVICOS;H;1739;1803;1968;5510;4;4;4;12
+492;Transporte Rodoviário de Passageiros;SERVICOS;H;42281;39868;38229;120378;1536;1461;1428;4425
+493;Transporte Rodoviário de Carga;SERVICOS;H;55017;52902;48678;156597;4869;4575;4282;13726
+494;Transporte Dutoviário;SERVICOS;H;260;262;252;774;5;6;6;17
+501;Transporte Marítimo de Cabotagem e Longo Curso;SERVICOS;H;38;61;46;145;14;14;11;39
+502;Transporte por Navegação Interior;SERVICOS;H;594;563;507;1664;24;23;22;69
+503;Navegação de Apoio;SERVICOS;H;278;291;275;844;18;17;19;54
+509;Outros Transportes Aquaviários;SERVICOS;H;455;483;463;1401;46;48;50;144
+511;Transporte Aéreo de Passageiros;SERVICOS;H;1082;1086;1016;3184;31;32;35;98
+512;Transporte Aéreo de Carga;SERVICOS;H;44;87;79;210;6;4;4;14
+521;Armazenamento, Carga e Descarga;SERVICOS;H;6571;6646;5527;18744;275;269;248;792
+522;Atividades Auxiliares dos Transportes Terrestres;SERVICOS;H;5669;5964;5789;17422;691;669;668;2028
+523;Atividades Auxiliares dos Transportes Aquaviários;SERVICOS;H;3032;2684;2632;8348;80;75;75;230
+524;Atividades Auxiliares dos Transportes Aéreos;SERVICOS;H;2082;1834;1810;5726;62;56;53;171
+525;Atividades Relacionadas à Organização do Transporte de Carga;SERVICOS;H;3635;4572;3206;11413;152;135;143;430
+531;Atividades de Correio;SERVICOS;H;4830;4908;5131;14869;526;522;519;1567
+532;Atividades de Malote e de Entrega;SERVICOS;H;1451;1425;1458;4334;201;192;191;584
+551;Hotéis e Similares;SERVICOS;I;34357;33566;32756;100679;2573;2549;2459;7581
+559;Outros Tipos de Alojamento não Especificados Anteriormente;SERVICOS;I;1023;1009;977;3009;450;428;403;1281
+561;Restaurantes e Outros Serviços de Alimentação e Bebidas;SERVICOS;I;62292;59296;56836;178424;11642;10968;10289;32899
+562;Serviços de Catering, Bufê e Outros Serviços de Comida Preparada;SERVICOS;I;14506;12379;12232;39117;1565;1462;1395;4422
+581;Edição de Livros, Jornais, Revistas e Outras Atividades de Edição;SERVICOS;J;160;183;146;489;70;70;68;208
+582;Edição Integrada à Impressão de Livros, Jornais, Revistas e Outras Publicações;SERVICOS;J;714;573;574;1861;86;89;89;264
+591;Atividades Cinematográficas, Produção de Vídeos e de Programas de Televisão;SERVICOS;J;945;1032;985;2962;128;134;134;396
+592;Atividades de Gravação de Som e de Edição de Música;SERVICOS;J;85;89;89;263;27;26;25;78
+601;Atividades de Rádio;SERVICOS;J;1248;1282;1295;3825;176;173;175;524
+602;Atividades de Televisão;SERVICOS;J;1345;1365;1336;4046;18;18;17;53
+611;Telecomunicações por Fio;SERVICOS;J;9582;9633;9081;28296;1019;965;916;2900
+612;Telecomunicações sem Fio;SERVICOS;J;627;526;514;1667;36;30;31;97
+614;Operadoras de Televisão por Assinatura;SERVICOS;J;64;67;66;197;3;5;5;13
+619;Outras Atividades de Telecomunicações;SERVICOS;J;4215;3922;3804;11941;469;450;424;1343
+620;Atividades dos Serviços de Tecnologia da Informação;SERVICOS;J;11393;10860;10516;32769;715;688;677;2080
+631;Tratamento de Dados, Hospedagem na Internet e Outras Atividades Relacionadas;SERVICOS;J;3341;4034;3595;10970;282;281;267;830
+639;Outras Atividades de Prestação de Serviços de Informação;SERVICOS;J;340;313;1580;2233;75;73;70;218
+641;Banco Central;SERVICOS;K;65;69;70;204;1;1;1;3
+642;Intermediação Monetária - Depósitos à Vista;SERVICOS;K;17044;17393;17297;51734;1288;1321;1296;3905
+643;Intermediação Não-Monetária - Outros Instrumentos de Captação;SERVICOS;K;253;264;267;784;14;13;15;42
+645;Sociedades de Capitalização;SERVICOS;K;18;19;19;56;2;2;2;6
+646;Atividades de Sociedades de Participação;SERVICOS;K;1371;1403;1302;4076;185;175;163;523
+649;Atividades de Serviços Financeiros não Especificadas Anteriormente;SERVICOS;K;349;358;334;1041;55;52;45;152
+651;Seguros de Vida e Não-Vida;SERVICOS;K;365;389;392;1146;29;29;32;90
+652;Seguros-Saúde;SERVICOS;K;43;40;34;117;1;1;1;3
+654;Previdência Complementar;SERVICOS;K;171;136;131;438;14;14;14;42
+655;Planos de Saúde;SERVICOS;K;1504;1450;1435;4389;51;51;51;153
+661;Atividades Auxiliares dos Serviços Financeiros;SERVICOS;K;903;1058;1184;3145;279;283;261;823
+662;Atividades Auxiliares dos Seguros, da Previdência Complementar e dos Planos de Saúde;SERVICOS;K;2282;2260;2220;6762;723;706;689;2118
+663;Atividades de Administração de Fundos por Contrato ou Comissão;SERVICOS;K;98;82;77;257;15;12;8;35
+681;Atividades Imobiliárias de Imóveis Próprios;SERVICOS;L;2807;2799;3045;8651;837;827;833;2497
+682;Atividades Imobiliárias por Contrato ou Comissão;SERVICOS;L;6676;6197;5601;18474;888;822;783;2493
+691;Atividades Jurídicas;SERVICOS;M;8461;7960;7659;24080;2265;2390;2385;7040
+692;Atividades de Contabilidade, Consultoria e Auditoria Contábil e Tributária;SERVICOS;M;12415;12289;12231;36935;2638;2616;2537;7791
+702;Atividades de Consultoria em Gestão Empresarial;SERVICOS;M;6115;5628;4930;16673;769;714;670;2153
+711;Serviços de Arquitetura e Engenharia e Atividades Técnicas Relacionadas;SERVICOS;M;21315;20195;19605;61115;2022;1938;1755;5715
+712;Testes e Análises Técnicas;SERVICOS;M;1067;980;1000;3047;110;107;101;318
+721;Pesquisa e Desenvolvimento Experimental em Ciências Físicas e Naturais;SERVICOS;M;1108;1138;1094;3340;41;40;36;117
+722;Pesquisa e Desenvolvimento Experimental em Ciências Sociais e Humanas;SERVICOS;M;86;74;71;231;14;13;14;41
+731;Publicidade;SERVICOS;M;9820;8734;8339;26893;1334;1245;1185;3764
+732;Pesquisas de Mercado e de Opinião Pública;SERVICOS;M;1117;1081;1051;3249;10;11;11;32
+741;Design e Decoração de Interiores;SERVICOS;M;178;227;222;627;55;55;49;159
+742;Atividades Fotográficas e Similares;SERVICOS;M;399;596;521;1516;140;133;139;412
+749;Atividades Profissionais, Científicas e Técnicas não Especificadas Anteriormente;SERVICOS;M;5946;5007;4652;15605;822;791;767;2380
+750;Atividades Veterinárias;SERVICOS;M;2024;1834;1691;5549;405;400;372;1177
+771;Locação de Meios de Transporte sem Condutor;SERVICOS;N;8903;8008;8356;25267;624;592;583;1799
+772;Aluguel de Objetos Pessoais e Domésticos;SERVICOS;N;1378;1262;1226;3866;349;335;320;1004
+773;Aluguel de Máquinas e Equipamentos sem Operador;SERVICOS;N;9708;9135;9011;27854;1391;1261;1176;3828
+774;Gestão de Ativos Intangíveis Não-Financeiros;SERVICOS;N;354;368;326;1048;58;56;50;164
+781;Seleção e Agenciamento de Mão-De-Obra;SERVICOS;N;3263;2670;2748;8681;181;154;130;465
+782;Locação de Mão-De-Obra Temporária;SERVICOS;N;11275;11327;11302;33904;136;135;141;412
+783;Fornecimento e Gestão de Recursos Humanos para Terceiros;SERVICOS;N;13459;11739;10264;35462;49;43;48;140
+791;Agências de Viagens e Operadores Turísticos;SERVICOS;N;2700;2638;2445;7783;705;683;615;2003
+799;Serviços de Reservas e Outros Serviços de Turismo não Especificados Anteriormente;SERVICOS;N;369;367;354;1090;106;109;99;314
+801;Atividades de Vigilância, Segurança Privada e Transporte de Valores;SERVICOS;N;35172;34115;33195;102482;369;344;323;1036
+802;Atividades de Monitoramento de Sistemas de Segurança;SERVICOS;N;1898;1657;1677;5232;216;200;194;610
+803;Atividades de Investigação Particular;SERVICOS;N;130;2;139;271;3;2;2;7
+811;Serviços Combinados para Apoio a Edifícios;SERVICOS;N;43888;43026;42117;129031;6151;6083;6014;18248
+812;Atividades de Limpeza;SERVICOS;N;63178;53893;48737;165808;622;592;566;1780
+813;Atividades Paisagísticas;SERVICOS;N;1067;1022;999;3088;190;182;171;543
+821;Serviços de Escritório e Apoio Administrativo;SERVICOS;N;31705;23703;21902;77310;2723;2487;2363;7573
+822;Atividades de Teleatendimento;SERVICOS;N;38655;33222;29780;101657;108;83;75;266
+823;Atividades de Organização de Eventos, Exceto Culturais e Esportivos;SERVICOS;N;2458;2190;2087;6735;605;577;548;1730
+829;Outras Atividades de Serviços Prestados Principalmente às Empresas;SERVICOS;N;20136;20334;19387;59857;2397;2313;2230;6940
+841;Administração do Estado e da Política Econômica e Social;ADM_PUBLICA;O;779020;609506;648942;2037468;1067;1060;1060;3187
+842;Serviços Coletivos Prestados Pela Administração Pública;ADM_PUBLICA;O;68134;66358;64480;198972;37;38;36;111
+843;Seguridade Social Obrigatória;ADM_PUBLICA;O;6307;3243;3220;12770;27;27;27;81
+851;Educação Infantil e Ensino Fundamental;SERVICOS;P;46721;45029;42936;134686;2857;2776;2663;8296
+852;Ensino Médio;SERVICOS;P;7869;7760;7446;23075;173;174;175;522
+853;Educação Superior;SERVICOS;P;32650;31876;31972;96498;266;266;252;784
+854;Educação Profissional de Nível Técnico e Tecnológico;SERVICOS;P;5735;5576;4916;16227;220;220;204;644
+855;Atividades de Apoio à Educação;SERVICOS;P;4418;5005;4539;13962;121;106;101;328
+859;Outras Atividades de Ensino;SERVICOS;P;19396;18886;17262;55544;2260;2165;2015;6440
+861;Atividades de Atendimento Hospitalar;SERVICOS;Q;110225;104820;96732;311777;1001;959;936;2896
+862;Serviços Móveis de Atendimento a Urgências e de Remoção de Pacientes;SERVICOS;Q;355;435;460;1250;47;40;35;122
+863;Atividades de Atenção Ambulatorial Executadas por Médicos e Odontólogos;SERVICOS;Q;29470;30358;27397;87225;8959;8453;8081;25493
+864;Atividades de Serviços de Complementação Diagnóstica e Terapêutica;SERVICOS;Q;16824;16404;15886;49114;1779;1726;1670;5175
+865;Atividades de Profissionais da área de Saúde, Exceto Médicos e Odontólogos;SERVICOS;Q;6559;6103;5676;18338;1707;1574;1433;4714
+866;Atividades de Apoio à Gestão de Saúde;SERVICOS;Q;11160;8395;7988;27543;147;133;126;406
+869;Atividades de Atenção à Saúde Humana não Especificadas Anteriormente;SERVICOS;Q;3691;3386;3416;10493;195;188;179;562
+871;Atividades de Assistência a Idosos, Deficientes Físicos, Imunodeprimidos e Convalescentes, e de Infra-Est e Apoio a Pac Prest em Res Col e Part;SERVICOS;Q;2147;2169;2187;6503;178;179;175;532
+872;Atividades de Assistência Psicossocial e à Saúde a Portadores de Distúrbios Psíquicos, Deficiência Mental e Dependência Química;SERVICOS;Q;886;834;781;2501;51;47;42;140
+873;Atividades de Assistência Social Prestadas em Residências Coletivas e Particulares;SERVICOS;Q;889;990;1113;2992;35;34;36;105
+880;Serviços de Assistência Social sem Alojamento;SERVICOS;Q;4592;4467;3995;13054;101;98;101;300
+900;Atividades Artísticas, Criativas e de Espetáculos;SERVICOS;R;1264;1125;1188;3577;272;252;254;778
+910;Atividades Ligadas ao Patrimônio Cultural e Ambiental;SERVICOS;R;912;829;757;2498;28;24;21;73
+920;Atividades de Exploração de Jogos de Azar e Apostas;SERVICOS;R;0;0;0;0;0;1;0;1
+931;Atividades Esportivas;SERVICOS;R;9740;8648;7608;25996;1626;1447;1309;4382
+932;Atividades de Recreação e Lazer;SERVICOS;R;1144;1130;1070;3344;207;182;182;571
+941;Atividades de Organizações Associativas Patronais, Empresariais e Profissionais;SERVICOS;S;2184;2170;2084;6438;263;266;266;795
+942;Atividades de Organizações Sindicais;SERVICOS;S;4001;4048;3793;11842;574;569;567;1710
+943;Atividades de Associações de Defesa de Direitos Sociais;SERVICOS;S;18648;19216;16501;54365;1302;1082;1143;3527
+949;Atividades de Organizações Associativas não Especificadas Anteriormente;SERVICOS;S;10995;10196;9766;30957;1755;1686;1708;5149
+951;Reparação e Manutenção de Equipamentos de Informática e Comunicação;SERVICOS;S;2068;1991;2106;6165;593;575;553;1721
+952;Reparação e Manutenção de Objetos e Equipamentos Pessoais e Domésticos;SERVICOS;S;1244;1306;1412;3962;488;486;486;1460
+960;Outras Atividades de Serviços Pessoais;SERVICOS;S;11410;11367;11519;34296;2995;2901;2782;8678
+970;Serviços Domésticos;SERVICOS;T;41;43;65;149;11;13;11;35
+990;Organismos Internacionais e Outras Instituições Extraterritoriais;SERVICOS;U;26;27;26;79;4;4;4;12
